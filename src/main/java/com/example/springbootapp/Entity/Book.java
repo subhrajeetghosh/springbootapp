@@ -20,7 +20,7 @@ public class Book {
 
     @Column(name = "Author")
     private String author;
-/hfjhg
+
     public Book(int Id, String name, String author) {
         this.Id = Id;
         this.name = name;
