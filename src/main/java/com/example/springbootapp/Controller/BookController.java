@@ -19,7 +19,7 @@ public class BookController {
     @Autowired
     private BookRepository bookrepository;
     //get all books
-    @GetMapping("postgres")
+    @GetMapping("/postgres")
     public List<Book> getAllBook() {
         return this.bookrepository.findAll();
     }
@@ -32,8 +32,8 @@ public class BookController {
         return ResponseEntity.ok().body(book);
     }
 
-    @PostMapping("postgres")
-    public Book createBook( @RequestBody Book book) {
+    @PostMapping("/postgres")
+    public Book createBook(@Validated @RequestBody Book book) {
         return this.bookrepository.save(book);
     }
     @PutMapping("/postgres/{id}")

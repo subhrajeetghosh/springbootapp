@@ -12,13 +12,13 @@ import javax.persistence.*;
 @Table(name = "postgres")
 public class Book {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
     private  int Id;
 
-    @Column(name = "Name")
+    @Column(name = "name")
     private String name;
 
-    @Column(name = "Author")
+    @Column(name = "author")
     private String author;
 
     public Book(int Id, String name, String author) {
