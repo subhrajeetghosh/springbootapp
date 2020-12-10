@@ -47,7 +47,6 @@ public class BookController {
         final Book updatedBook = bookrepository.save(book);
         return ResponseEntity.ok(updatedBook);
     }
-    //hbyuhbuinbiuhbyu uy
     @DeleteMapping("/postgres/{Id}")
     public Map<String, Boolean> deleteBook(@PathVariable(value = "Id") int Id)
             throws ResourceNotFoundException {
