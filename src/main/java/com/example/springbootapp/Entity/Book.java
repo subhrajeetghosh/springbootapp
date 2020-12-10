@@ -9,6 +9,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "postgres")
 public class Book {
+
     @Id
     @Column(name="id")
     private  int Id;

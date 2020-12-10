@@ -5,6 +5,7 @@ import com.example.springbootapp.Exception.ResourceNotFoundException;
 import com.example.springbootapp.Repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,14 +13,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
+@EnableWebSecurity
 @RestController
 @RequestMapping("/api/v1")
 public class BookController {
     @Autowired
     private BookRepository bookrepository;
     //get all books
-    @GetMapping("/postgres")
+    //@GetMapping("/postgres")
+    @RequestMapping(value="postgres", method = RequestMethod.GET)
     public List<Book> getAllBook() {
         return this.bookrepository.findAll();
     }
@@ -36,9 +38,11 @@ public class BookController {
     public Book createBook(@Validated @RequestBody Book book) {
         return this.bookrepository.save(book);
     }
+
+
     @PutMapping("/postgres/{id}")
     public ResponseEntity<Book> updateBook(@PathVariable(value = "Id") int Id,
-                                                   @Validated @RequestBody Book bookDetails) throws ResourceNotFoundException {
+                                           @org.jetbrains.annotations.NotNull @Validated @RequestBody Book bookDetails) throws ResourceNotFoundException {
         Book book = bookrepository.findById(Id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + Id));
 
