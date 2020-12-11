@@ -26,7 +26,8 @@ public class BookController {
         return this.bookrepository.findAll();
     }
     //get books by id
-    @GetMapping("/postgres/{Id}")
+    //@GetMapping("/postgres/{Id}")
+    @RequestMapping(value="postgres/{Id}", method = RequestMethod.GET)
     public ResponseEntity<Book> getEmployeeById(@PathVariable(value = "Id") int Id)
             throws ResourceNotFoundException {
         Book book = bookrepository.findById(Id)
@@ -35,6 +36,7 @@ public class BookController {
     }
 
     @PostMapping("/postgres")
+    @RequestMapping(value="postgres", method = RequestMethod.POST)
     public Book createBook(@Validated @RequestBody Book book) {
         return this.bookrepository.save(book);
     }
