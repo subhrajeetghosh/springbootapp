@@ -2,11 +2,13 @@
 package com.example.springbootapp.Entity;
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
 
 @Data
 @Entity
+@ToString
 @Table(name = "postgres")
 public class Book {
 

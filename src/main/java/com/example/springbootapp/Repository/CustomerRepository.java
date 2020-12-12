@@ -7,9 +7,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-
 @Repository
 public interface CustomerRepository extends JpaRepository<Customer, Integer> {
-    @Query("SELECT new com.example.springbootapp.Controller.OrderResponse(c.name, b.name) FROM CUSTOMER c JOIN c.book b")
+    @Query("SELECT new com.example.springbootapp.Order.OrderResponse(c.email, b.name) FROM Customer c JOIN c.book b")
     public List<OrderResponse> getJoinInformation();
 }

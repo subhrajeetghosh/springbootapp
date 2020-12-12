@@ -1,6 +1,9 @@
 package com.example.springbootapp.Entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,6 +11,9 @@ import java.util.List;
 
 @Data
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 @Table(name = "customer")
 public class Customer {
     @Id
@@ -21,7 +27,7 @@ public class Customer {
     @JoinColumn( name = "pc_fid", referencedColumnName = "id")
     List<Book> book = new ArrayList<>();
 
-    public Customer(String email, String pass, List<Book> book) {
+    /*public Customer(String email, String pass, List<Book> book) {
         this.email = email;
         this.pass = pass;
         this.book = book;
@@ -49,5 +55,5 @@ public class Customer {
 
     public void setBook(List<Book> book) {
         this.book = book;
-    }
+    }*/
 }
