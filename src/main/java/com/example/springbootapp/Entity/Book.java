@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class Book {
 
     @Id
-    @Column(name="id")
+    @Column(name="book_id")
     private  int Id;
 
     @Column(name = "name")
@@ -21,12 +21,6 @@ public class Book {
 
     @Column(name = "author")
     private String author;
-
-    public Book(int Id, String name, String author) {
-        this.Id = Id;
-        this.name = name;
-        this.author = author;
-    }
 
     public Book() {
     }

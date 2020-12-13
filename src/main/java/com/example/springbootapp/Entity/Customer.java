@@ -23,8 +23,7 @@ public class Customer {
     String email;
     @Column(name = "password")
     String pass;
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn( name = "pc_fid", referencedColumnName = "id")
+    @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
     List<Book> book = new ArrayList<>();
 
     /*public Customer(String email, String pass, List<Book> book) {
