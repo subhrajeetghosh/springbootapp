@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -21,16 +23,19 @@ public class Book {
 
     @Column(name = "author")
     private String author;
+    @ManyToMany(mappedBy="book")
+    private Collection<Customer> customers = new ArrayList<>();
 
     public Book() {
     }
+
 
     public int getId() {
         return Id;
     }
 
     public void setId(int id) {
-        this.Id = id;
+        Id = id;
     }
 
     public String getName() {
@@ -48,4 +53,12 @@ public class Book {
     public void setAuthor(String author) {
         this.author = author;
     }
+
+    /*public Collection<Customer> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(Collection<Customer> customers) {
+        this.customers = customers;
+    }*/
 }
