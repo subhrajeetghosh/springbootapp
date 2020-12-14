@@ -3,6 +3,7 @@ package com.example.springbootapp.Controller;
 import com.example.springbootapp.Entity.Book;
 import com.example.springbootapp.Exception.ResourceNotFoundException;
 import com.example.springbootapp.Repository.BookRepository;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -43,7 +44,7 @@ public class BookController {
 
     @RequestMapping(value="/postgres/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Book> updateBook(@PathVariable(value = "Id") int Id,
-                                           @org.jetbrains.annotations.NotNull @Validated @RequestBody Book bookDetails) throws ResourceNotFoundException {
+                                           @NotNull @Validated @RequestBody Book bookDetails) throws ResourceNotFoundException {
         Book book = bookrepository.findById(Id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + Id));
 

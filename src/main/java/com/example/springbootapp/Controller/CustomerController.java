@@ -22,6 +22,10 @@ public class CustomerController {
     public Customer placeOrder(@RequestBody OrderRequest request){
         return customerrepository.save(request.getCustomer());
     }
+    @GetMapping("/findAllOrders")
+    public List<Customer> findAllOrders(){
+        return customerrepository.findAll();
+    }
     @GetMapping("/getInfo")
     public List<OrderResponse> getJoinInformation(){
         return customerrepository.getJoinInformation();
