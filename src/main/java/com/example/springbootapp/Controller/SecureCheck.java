@@ -16,7 +16,7 @@ public class SecureCheck extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests().antMatchers("/postgres", "/sec")
+        http.authorizeRequests().antMatchers("/getBook")
                 .hasRole("USER").and().httpBasic();
     }
 }

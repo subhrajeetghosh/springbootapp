@@ -14,45 +14,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Table(name = "customer")
+@Table(name = "Customer")
 public class Customer {
     @Id
-    @Column(name = "id")
+    @Column(name = "user_id")
     int id;
-    @Column(name = "email")
+    @Column(name = "user_email")
     String email;
-    @Column(name = "password")
+    @Column(name = "user_password")
     String pass;
-    @ManyToMany(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
+    @OneToMany(targetEntity = Book.class,cascade = CascadeType.ALL)
+    @JoinColumn(name ="cp_fk",referencedColumnName = "user_id")
     List<Book> book = new ArrayList<>();
-
-    /*public Customer(String email, String pass, List<Book> book) {
-        this.email = email;
-        this.pass = pass;
-        this.book = book;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPass() {
-        return pass;
-    }
-
-    public void setPass(String pass) {
-        this.pass = pass;
-    }
-
-    public List<Book> getBook() {
-        return book;
-    }
-
-    public void setBook(List<Book> book) {
-        this.book = book;
-    }*/
 }
