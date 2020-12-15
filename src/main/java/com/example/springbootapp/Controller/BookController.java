@@ -20,15 +20,12 @@ import java.util.Map;
 public class BookController {
     @Autowired
     private BookRepository bookrepository;
-    //get all books
-    //
-    @RequestMapping(value="/getBook", method = RequestMethod.GET)
+    @GetMapping("/postgres")
     public List<Book> getAllBook() {
         return this.bookrepository.findAll();
     }
     //get books by id
-    //@GetMapping("/postgres/{Id}")
-    @RequestMapping(value="postgres/{Id}", method = RequestMethod.GET)
+    @GetMapping("/postgres/{Id}")
     public ResponseEntity<Book> getEmployeeById(@PathVariable(value = "Id") int Id)
             throws ResourceNotFoundException {
         Book book = bookrepository.findById(Id)
@@ -36,13 +33,13 @@ public class BookController {
         return ResponseEntity.ok().body(book);
     }
 
-    //@PostMapping("/postgres")
-    @RequestMapping(value="postgres", method = RequestMethod.POST)
+    @PostMapping("/postgres")
+    //@RequestMapping(value="postgres", method = RequestMethod.POST)
     public Book createBook(@Validated @RequestBody Book book) {
         return this.bookrepository.save(book);
     }
-
-    @RequestMapping(value="/postgres/{id}", method = RequestMethod.PUT)
+    @PutMapping("/postgres/{id}")
+    //@RequestMapping(value="/postgres/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Book> updateBook(@PathVariable(value = "Id") int Id,
                                            @NotNull @Validated @RequestBody Book bookDetails) throws ResourceNotFoundException {
         Book book = bookrepository.findById(Id)
@@ -53,7 +50,8 @@ public class BookController {
         final Book updatedBook = bookrepository.save(book);
         return ResponseEntity.ok(updatedBook);
     }
-    @RequestMapping(value = "/postgres/{Id}", method = RequestMethod.DELETE)
+    @DeleteMapping("/postgres/{Id}")
+    //@RequestMapping(value = "/postgres/{Id}", method = RequestMethod.DELETE)
     public Map<String, Boolean> deleteBook(@PathVariable(value = "Id") int Id)
             throws ResourceNotFoundException {
         Book book = bookrepository.findById(Id)
