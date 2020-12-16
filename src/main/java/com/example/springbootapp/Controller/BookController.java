@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,19 +27,18 @@ public class BookController {
     }
     //get books by id
     @GetMapping("/postgres/{Id}")
-    public ResponseEntity<Book> getEmployeeById(@PathVariable(value = "Id") int Id)
+    public ResponseEntity<Book> getBookById(@PathVariable(value = "Id") int Id)
             throws ResourceNotFoundException {
         Book book = bookrepository.findById(Id)
                 .orElseThrow(() -> new ResourceNotFoundException("Employee not found for this id :: " + Id));
         return ResponseEntity.ok().body(book);
     }
-
-    @PostMapping("/postgres")
-    //@RequestMapping(value="postgres", method = RequestMethod.POST)
-    public Book createBook(@Validated @RequestBody Book book) {
+    /*@RequestMapping(value="/addBook", method = RequestMethod.POST)*/
+    @PostMapping("/addBook")
+    public Book createBook(@Valid @RequestBody Book book) {
         return this.bookrepository.save(book);
     }
-    @PutMapping("/postgres/{id}")
+    @PutMapping("/update/{id}")
     //@RequestMapping(value="/postgres/{id}", method = RequestMethod.PUT)
     public ResponseEntity<Book> updateBook(@PathVariable(value = "Id") int Id,
                                            @NotNull @Validated @RequestBody Book bookDetails) throws ResourceNotFoundException {
